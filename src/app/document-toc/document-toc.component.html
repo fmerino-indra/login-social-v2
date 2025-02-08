@@ -1,0 +1,18 @@
+<aside id="sidebar-toc" class="sidebar-toc">
+  <nav class="document-toc-container">
+    <div class="document-toc-container">
+      <section class="document-toc">
+        <header><h2 class="document-toc-heading">In this article (right)</h2></header>
+        <ul class="document-toc-list" >
+          <li class="document-toc-item" *ngFor="let section of sections">
+            <a class="document-toc-link"
+            [class.document-toc-link-selected]="activeSection===section.id"
+            [href]="'#'+ section.id">
+            {{section.title}}
+          </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+</aside>

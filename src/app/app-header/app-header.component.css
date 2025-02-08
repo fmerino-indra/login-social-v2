@@ -1,0 +1,198 @@
+
+/* Original:
+header: top-navigation
+  container (flex)
+    top-navigation-wrap (flex)
+      a
+    top-navigation-main (flex)
+      nav: main-nav
+        ul: main-menu (flex)
+          li:
+            son flex porque tienen un botón invisible para el menú desplegable, pero realmente no es necesario
+      header-search
+        order:1
+      theme-switcher-menu
+      auth-container (flex)
+        order:2
+
+  Propia
+  header: top-navigation (flex)
+    top-navigation-home
+    top-navigation-main (flex)
+      nav: main-nav
+        ul: main-nav-list (flex)
+          li...
+      header-search
+      theme-switcher-menu
+      auth-container (flex)
+*/
+
+.sticky-header-container {
+  position:sticky;
+  top: -1px;
+
+}
+.top-navigation {
+  width: 100%;
+  position: relative;
+  font-family: var(--font-heading);
+
+}
+.container {
+  display:flex;
+  align-items: center; /* Realmente este no los centra, porque dentro hay otros div*/
+  flex-flow: row wrap;
+  gap: 1rem;
+
+  background-color: var(--background-primary);
+  /* justify-content:center; */
+  width: 100%;
+  max-width:90%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+.article-actions-container {
+  background-color: var(--background-secondary);
+  color:var(--text-secondary);
+}
+
+.top-navigation,
+.article-actions-container {
+  border-bottom: 1px solid var(--border-primary);
+}
+.top-navigation-home {
+  background-color: rgb(90, 153, 38);
+  height:var(--top-nav-height);
+  display: flex;
+  align-items: center;
+}
+
+.top-navigation-main {
+  align-items: center;
+  display:flex;
+  flex-direction: row;
+  flex: 1 1;
+  gap:0.5rem;
+  justify-content: space-between;
+  /*
+  background-color: rgb(114, 114, 114);
+  */
+  width: 100%;
+  position: static;
+}
+
+.main-nav {
+  /*
+  background-color: #90cbf5;
+  */
+  width: max-content;
+  margin-right: auto; /* Reparte todo el espacio horizontal sobrante entre los auto https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right*/
+  order:0;
+  /* min-width: 2em; */
+  /* flex: 3; */
+}
+.main-nav-list {
+  display:flex;
+  justify-content:flex-start;
+  gap:1em;
+  list-style: none;
+}
+.top-level-entry-link {
+  color: var(--text-secondary);
+}
+.top-level-entry-link.active {
+  color: var(--text-active);
+}
+
+.header-search {
+  /* flex: 1; */
+}
+.theme-switcher-menu {
+  /* flex: 1; */
+  background-color:#0085f230;
+  background-color:#0085f2;
+}
+.top-navigation-main .auth-container {
+  order: 2;
+}
+
+.auth-container {
+  display:flex;
+  justify-content: flex-end;
+  /* flex: 1; */
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  font-size: 0.833rem;
+  font-weight: 600;
+  gap:1em;
+  list-style: none;
+
+/* Pruebas
+  color:#90cbf5;
+  background-color:#ff2a5130;
+  background-color:#ff2a51;
+*/
+}
+.auth-container .login-link {
+  align-items: center;
+  display: inline-flex;
+  font-weight: 600;
+  height: 2rem;
+  text-align: center;
+}
+.auth-container .login-link {
+  color: var(--text-secondary);
+}
+/*---------------------------------------------------*/
+/* .app-header {
+  height: 60px;
+  z-index: 10;
+  position: fixed;
+  top:0px;
+}
+
+.app-title {
+  line-height: 60px;
+  vertical-align: middle;
+  font-size: 1.35em;
+}
+
+.app-branding {
+  float: right;
+}
+
+.app-options {
+  float: right;
+}
+
+.app-nav ul {
+  list-style-position: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-nav ul li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.app-nav ul li a {
+  display: inline-block;
+  line-height: 60px;
+  vertical-align: middle;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.app-nav ul li a:hover {
+  color: #0f96f6;
+}
+
+.app-nav ul li a.active {
+  color: #0f96f6;
+} */

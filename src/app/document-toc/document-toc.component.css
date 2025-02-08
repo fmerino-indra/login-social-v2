@@ -1,0 +1,62 @@
+/*
+.toc-container {
+  --offset:calc(calc(4rem+1px)+2rem+1px);
+
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  height: calc(100vh - var(--offset));
+  overflow-y: scroll;
+
+  position: sticky;
+  top:var(--offset);
+  top:var(--top-nav-top);
+}
+*/
+.sidebar-toc {
+  /* --offset:calc(calc(4rem+1px)+2rem+1px);
+  position: sticky;
+  top:var(--offset);
+  top:var(--top-nav-top); */
+
+  /* grid-area: toc; */
+}
+
+.document-toc-container{
+  display:flex;
+}
+.document-toc {
+  display:block;
+
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.document-toc-heading {
+  font:var(--type-heading-h5); /*400 1rem "fonts a tutiplen"*/
+  letter-spacing: 1.5px;
+  margin:0 0 1rem;
+}
+.document-toc-list {
+  list-style:none;
+  padding-left: 0;
+}
+
+.document-toc-link {
+  border-left: 2px solid var(--border-secondary);
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: .5rem 1rem;
+  display: inline-block;
+  min-width: 100%;
+}
+.document-toc-link-selected {
+  background-color: var(--background-toc-active);
+  border-bottom-right-radius:.25rem;
+  border-left: 2px solid var(--category-color);
+  border-top-right-radius:.25rem;
+
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
