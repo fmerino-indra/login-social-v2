@@ -1,1 +1,255 @@
-/* You can add global styles to this file, and also import other style files */
+
+* {
+  --text-primary:#1b1b1b;
+  --text-secondary:#4e4e4e;
+  --text-active:#858585;
+  --text-inactive:#9e9e9ea6;
+  --background-primary:#fff;
+  --background-secondary:#f9f9fb;
+
+  --background-toc-active:#0085f230;
+  --border-primary:#cdcdcd;
+  --border-secondary:#cdcdcd;
+
+  --font-fallback:BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-heading: Inter, var(--font-fallback);
+  --font-body: Inter, var(--font-fallback);
+  --top-nav-height: 4rem;
+  --top-nav-top: 6.5rem;
+
+  --category-color:#0069c2;
+
+  --type-heading-h5-font-size: 1.2rem;
+  --base-line-height:1.2rem;
+  --heading-line-height:var(--base-line-height);
+
+  --type-heading-h5:400 var(--type-heading-h5-font-size) /var(--heading-line-height) var(--font-heading)
+}
+
+body{
+  font-family: var(--font-body);
+  margin: 0;
+  height: 2500px;
+}
+
+.body, ul {
+  margin: 0;
+}
+*, :after, :before{
+  box-sizing: border-box;
+}
+
+
+
+/* Copia de:
+https://developer.mozilla.org/static/css/ui/atoms/button/_mixins.scss
+*/
+
+button,
+.button {
+  --button-primary-default: #1b1b1b;
+  --button-border-color:#1b1b1b;
+  --elem-radius: 0.25rem;
+
+  --background-primary: #fff;
+  --button-primary-hover:
+}
+
+button,
+.button {
+  appearance: none;
+  background: none;
+  border: none;
+}
+
+.button {
+  --button-bg: var(--button-primary-default);
+  --button-bg-hover: var(--button-primary-hover);
+  --button-bg-active: var(--button-primary-active);
+  --button-border-color: var(--button-primary-default);
+  --button-focus-effect: var(--focus-effect);
+  --button-height: var(--form-elem-height, 2rem);
+  --button-color: var(--background-primary);
+  --button-font: var(--type-emphasis-m);
+  --button-padding: 0.5rem;
+  --button-radius: var(--elem-radius, 0.25rem);
+  border-radius: var(--button-radius);
+
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  text-decoration: none;
+}
+
+.button-wrap {
+  align-items: center;
+  background-color: var(--button-bg);
+  border: 1px solid var(--button-border-color);
+  border-radius: var(--button-radius);
+  color: var(--button-color);
+  display: flex;
+  font: var(--button-font);
+  gap: 0.25rem;
+  height: var(--button-height);
+  justify-content: center;
+  padding-left: var(--button-padding);
+  padding-right: var(--button-padding);
+  position: relative;
+}
+
+.button .icon {
+  background-color: var(--button-color);
+  margin: 0 -1px; /* shrinks icon-only buttons to square.*/
+}
+
+/* Button States */
+
+.button:hover,
+.button.hover {
+  /* In most cases, we want the border to be the same color as the background.*/
+  --button-border-color: var(--button-bg-hover, var(--button-bg));
+
+  .button-wrap {
+    background-color: var(--button-bg-hover, var(--button-bg));
+  }
+}
+
+.button:active,
+.button.active {
+  .button-wrap {
+    background-color: var(--button-bg-active, var(--button-bg));
+  }
+}
+
+.button:focus,
+.button.focus {
+  outline: none;
+
+  .button-wrap {
+    border: 1px solid var(--button-secondary-border-focus);
+    box-shadow: var(--button-focus-effect);
+  }
+}
+
+.button.button[disabled],
+.button.button.inactive {
+  cursor: default;
+  opacity: 0.65;
+
+  &:hover {
+    --button-bg-hover: unset;
+  }
+
+  &:active {
+    --button-bg-active: unset;
+  }
+}
+
+/* Standard Button Modifiers */
+
+.button.small,
+.button.small .button-wrap {
+  --button-height: 1.75rem;
+  --button-padding: 0.25rem;
+}
+
+/* Secondary Version */
+
+.button.secondary {
+  --button-bg: var(--button-secondary-default);
+  --button-border-color: var(--border-primary);
+  --button-color: var(--text-secondary);
+  --button-bg-hover: var(--button-secondary-hover);
+  --button-bg-active: var(--button-secondary-active);
+
+  &:focus {
+    --button-border-color: var(--button-secondary-border-focus);
+  }
+}
+
+/* Action Version */
+
+.button.action {
+  --button-bg: transparent;
+  --button-border-color: var(--button-bg);
+  --button-color: var(--text-secondary);
+  --button-font: var(--type-label-s);
+  --button-bg-hover: var(--button-secondary-hover);
+  --button-bg-active: var(--button-secondary-active);
+
+  &.has-icon {
+    --button-font: var(--type-emphasis-m);
+    text-transform: initial;
+  }
+
+  &:focus {
+    --button-border-color: var(--button-secondary-border-focus);
+  }
+
+  .button-wrap {
+    text-transform: var(--button-action-transform, uppercase);
+  }
+
+  &.highlight {
+    --button-color: var(--button-primary-default);
+  }
+}
+
+/* Select Version */
+.button.select {
+  --button-bg: var(--button-secondary-default);
+  --button-bg-hover: var(--button-secondary-hover);
+  --button-bg-active: var(--button-secondary-active);
+  --button-border-color: var(--border-primary);
+  --button-color: var(--text-secondary);
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+
+  .button-wrap {
+    box-shadow: var(--shadow-01);
+    padding-right: 26px;
+    position: relative;
+  }
+/*
+  .button-wrap::after {
+    background-color: var(--icon-primary);
+    content: "";
+    display: block;
+    height: 16px;
+    mask-image: url("../../../assets/icons/small-arrow.svg");
+    mask-size: cover;
+    position: absolute;
+    right: 0.5rem;
+    top: calc(50% - 0.5rem);
+    width: 16px;
+  }
+*/
+}
+
+.button.link {
+  --button-bg: none;
+  --button-bg-hover: none;
+  --button-bg-active: none;
+  --button-border-color: none;
+  --button-focus-effect: none;
+  --button-secondary-border-focus: none;
+  --button-height: auto;
+  --button-font: unset;
+  --button-padding: 0;
+  --button-radius: 0;
+
+  --button-color: var(--text-link);
+  appearance: none;
+  display: inline;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline-color: var(--accent-primary);
+    outline-offset: 1px;
+    outline-style: auto;
+  }
+}
+
