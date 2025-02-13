@@ -45,10 +45,14 @@
         @if (this.modelService.isUserAuthenticated()) {
           <ul class="auth-container">
             <li>
-              <a [routerLink] = "['/profile']" >Profile</a>
+              <a [routerLink] = "['/profile']" >
+                <img [src]="appModel.user.userData.imageUrl" alt="micara"/>
+              </a>
             </li>
             <li>
-              <a onClick={this.props.onLogout}>Logout</a>
+              <a class="button" (click)="onLogout()" >
+                <span class="button-wrap">Logout</span>
+              </a>
             </li>
           </ul>
         } @else {

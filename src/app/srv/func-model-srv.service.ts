@@ -38,7 +38,7 @@ export class FuncModelSrvService {
 
 
   private log(message: string) {
-      console.log(`KyberService: ${message}`);
+      console.log(`LogService(FuncModelService): ${message}`);
   }
 
 

@@ -13,5 +13,5 @@ export const routeConfig: Routes = [
   },
   { path: 'oauth2/redirect', component: GoInRedirectComponent },
   { path: 'home', component: HomeComponent },
-  { path: '?token', component: GoInRedirectComponent,  },
+  { path: '?token', component: GoInRedirectComponent }
 ];

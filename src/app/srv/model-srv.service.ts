@@ -4,79 +4,45 @@ import { AppModel } from '../model/app-model';
 import { UserData } from '../model/user-data';
 import { API_BASE_URL } from '../constants/constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, switchMap, tap } from 'rxjs';
+import { UserModel } from '../model/user-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModelSrvService {
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  getProfile(): Observable<string|UserData> {
-    return this.http.get<UserData>(PROFILE_URI)
-      .pipe(
-        tap(_ => {
-          this.log('getting profile');
-        }),
-        catchError(this.handleError<string>('KyberService: Say Hello', ''))
-      );
+  constructor() {}
+  existModel():boolean {
+    const data = localStorage.getItem(APP_MODEL_KEY);
+    return (data != null);
   }
-
-  isUserAuthenticated() {
-    let jsonModel: string = localStorage.getItem(APP_MODEL_KEY)!;
-    let appModel: AppModel;// = { authenticated:false};
-    if (jsonModel) {
-      appModel = JSON.parse(jsonModel);
+  emptyModel():boolean {
+    const data = localStorage.getItem(APP_MODEL_KEY);
+    let dataModel: AppModel;
+    if (data) {
+     dataModel = JSON.parse(data);
+     return (dataModel.csrfToken != null && dataModel.user != null);
     }
-    return (jsonModel != null && appModel!.authenticated);
+    return (data != null);
+  }
+  isUserAuthenticated(): boolean {
+    return this.loadModel().isAuthenticated();
   }
 
-  cleanModel (): AppModel {
+  cleanModel(): AppModel {
     localStorage.removeItem(APP_MODEL_KEY);
-    const newModel = new AppModel();
-
-    localStorage.setItem(APP_MODEL_KEY, JSON.stringify(newModel));
-
+    const newModel = new AppModel({});
+    this.saveModel(newModel);
     return newModel;
   }
 
-  async getUserAuthenticated(): Promise<object|undefined> {
-    const uri = API_BASE_URL + "/user";
-    // debugger;
-    console.log(uri);
-    const data = fetch(uri);
-    console.log(data);
-    return (await data) ?? {};
+  saveModel(model: AppModel) {
+    localStorage.setItem(APP_MODEL_KEY, JSON.stringify(model));
   }
 
-    private log(message: string) {
-        console.log(`KyberService: ${message}`);
-    }
-
-    /**
-     * Handle Http operation that failed.
-     * Let the app continue.
-     * @param operation - name of the operation that failed
-     * @param result - optional value to return as the observable result
-     */
-    private handleError<T>(operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
-debugger;
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
-
-            // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.message}`);
-
-            // Let the app keep running by returning an empty result.
-            return of(result as T);
-        };
-    }
-
+  loadModel(): AppModel {
+    const data = localStorage.getItem(APP_MODEL_KEY);
+    return data ? new AppModel(JSON.parse(data)) : this.cleanModel();
+  }
 }
