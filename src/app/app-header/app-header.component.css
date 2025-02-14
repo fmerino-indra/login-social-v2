@@ -147,6 +147,14 @@ header: top-navigation
 .auth-container .login-link {
   color: var(--text-secondary);
 }
+
+.auth-container .profile-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius:150px;
+  border:2px solid #777;
+
+}
 /*---------------------------------------------------*/
 /* .app-header {
   height: 60px;

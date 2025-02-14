@@ -25,11 +25,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.appModel = this.modelService.loadModel();
+    this.modelService.appModel$.subscribe(model => {
+      if (model)
+        this.appModel=model;
+      else
+        this.appModel=this.modelService.getAppModel();
+    });
+
+    this.appModel = this.modelService.getAppModel();
     if (this.appModel.isAuthenticated()) {
       this.redirectHome();
     }
-    this.appModel = this.modelService.cleanModel();
     this.appFuncModel = this.funcModelService.cleanModel();
     //Hay que determinar el flujo
     // Comprobar que el usuario está logado

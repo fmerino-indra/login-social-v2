@@ -60,7 +60,7 @@ export class CsrfInterceptor implements HttpInterceptor {
       // const parsedData = data ? JSON.parse(data) : JSON.parse('{}');
       // return parsedData.csrfToken;
 
-      const model: AppModel = this.modelService.loadModel();
+      const model: AppModel = this.modelService.getAppModel();
       return (model && model.csrfToken && model.csrfToken.token) ? model.csrfToken.token : null;
     }
 

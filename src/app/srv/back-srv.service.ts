@@ -24,7 +24,7 @@ export class BackSrvService extends AbstractSrvService {
   }
   init(): AppModel {
     let model: AppModel;
-    model = this.modelService.cleanModel();
+    model = this.modelService.getAppModel();
 
     this.getXSRFTOKEN2()
       .pipe(
@@ -34,7 +34,7 @@ export class BackSrvService extends AbstractSrvService {
           const csrfToken = (csrfResponse as { token: string }).token;
           console.log('[GO IN COMPONENT]: Token=', csrfToken);
           model.csrfToken = csrfResponse;
-          this.modelService.saveModel(model);
+          this.modelService.setAppModel(model);
           return this.postProfile();
         }),
         catchError((error) => {
@@ -47,7 +47,7 @@ export class BackSrvService extends AbstractSrvService {
           // debugger;
           console.log('Profile executed ok', response);
           model.user = new UserModel(response);
-          this.modelService.saveModel(model);
+          this.modelService.setAppModel(model);
         },
         error: (error) => {
           console.error('Error profile:', error);

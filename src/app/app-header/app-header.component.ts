@@ -18,7 +18,11 @@ export class AppHeaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-      this.appModel = this.modelService.loadModel();
+    this.modelService.appModel$.subscribe((model) => {
+      if (model) this.appModel = model;
+      else this.appModel = this.modelService.getAppModel();
+    });
+
   }
   onLogout() {
     this.backService.postLogout();

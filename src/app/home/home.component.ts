@@ -13,15 +13,18 @@ import { DocumentTocComponent } from '../document-toc/document-toc.component';
   selector: 'app-home',
   imports: [DocumentTocComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  modelSrv: ModelSrvService = inject(ModelSrvService);
+  modelService: ModelSrvService = inject(ModelSrvService);
   appModel!: AppModel;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.modelSrv.loadModel();
+    this.modelService.appModel$.subscribe((model) => {
+      if (model) this.appModel = model;
+      else this.appModel = this.modelService.getAppModel();
+    });
   }
 }
