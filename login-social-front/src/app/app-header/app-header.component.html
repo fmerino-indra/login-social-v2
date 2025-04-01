@@ -1,0 +1,79 @@
+<div class="sticky-header-container">
+  <header class="top-navigation">
+    <div class="container">
+      <div class="top-navigation-home">
+        <a href="/">Home</a>
+      </div>
+      <div class="top-navigation-main">
+        <nav class="main-nav">
+          <ul class="main-nav-list">
+            <li class="top-level-entry-link active">1<sup>st</sup> option</li>
+            <li class="top-level-entry-link">2<sup>nd</sup> option</li>
+            <li class="top-level-entry-link">3<sup>rd</sup> option</li>
+            <li class="top-level-entry-link">4<sup>th</sup> option</li>
+            <li class="top-level-entry-link">5<sup>th</sup> option</li>
+            <li class="top-level-entry-link">6<sup>th</sup> option</li>
+          </ul>
+        </nav>
+        <div class="header-search">
+          <form action="/en-US/search" class="search-form search-widget" id="top-nav-search-form" role="search">
+            <label id="top-nav-search-label" for="top-nav-search-input" class="visually-hidden">Search MDN</label>
+            <input aria-activedescendant="" aria-autocomplete="list" aria-controls="top-nav-search-menu" aria-expanded="false" aria-labelledby="top-nav-search-label" autocomplete="off" id="top-nav-search-input" role="combobox" type="search" class="search-input-field" name="q" placeholder="   " required="" value="">
+            <button type="button" class="button action has-icon clear-search-button">
+              <span class="button-wrap">
+                <span class="icon icon-cancel "></span>
+                <span class="visually-hidden">Clear search input</span>
+              </span>
+            </button>
+            <button type="submit" class="button action has-icon search-button">
+              <span class="button-wrap">
+                <span class="icon icon-search "></span>
+                <span class="visually-hidden">Search</span>
+              </span>
+            </button>
+            <div id="top-nav-search-menu" role="listbox" aria-labelledby="top-nav-search-label"></div>
+          </form>
+        </div>
+        <div class="theme-switcher-menu">
+          <button type="button" class="button action has-icon theme-switcher-menu small" aria-haspopup="menu">
+            <span class="button-wrap">
+              <span class="icon icon-theme-os-default "></span>
+              Theme
+            </span>
+          </button>
+        </div>
+        @if (this.modelService.isUserAuthenticated()) {
+          <ul class="auth-container">
+            <li>
+              <a [routerLink] = "['/profile']" >
+                <img class="profile-avatar" [src]="appModel.user.userData.imageUrl" alt="micara"/>
+              </a>
+            </li>
+            <li>
+              <a class="button" (click)="onLogout()" >
+                <span class="button-wrap">Logout</span>
+              </a>
+            </li>
+          </ul>
+        } @else {
+          <ul class="auth-container">
+            <li>
+              <a class="login-link" [routerLink] = "['/login']" >Login</a>
+            </li>
+            <li>
+              <a class="button" [routerLink] = "['/signup']" >
+                <span class="button-wrap">Signup</span>
+              </a>
+            </li>
+          </ul>
+        }
+      </div>
+    </div>
+  </header>
+  <!--Se anidan 2 div para que la línea horizontal del breadcrumb ocupe todo el ancho-->
+  <div class="article-actions-container">
+    <div class="container">
+    Aquí el rastro de migas de pan
+    </div>
+  </div>
+</div>

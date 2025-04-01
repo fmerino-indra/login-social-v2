@@ -1,0 +1,35 @@
+{
+  "today": [{
+    "parts":[{
+      "id": 1,
+      "name": "Invitatorio"
+    },{
+      "id": 2,
+      "name": "Himno"
+    },{
+      "id": 3,
+      "name": "Salmodia"
+    },{
+      "id": 4,
+      "name": "Lectura Breve"
+    },{
+      "id": 5,
+      "name": "Lecturas"
+    },{
+      "id": 6,
+      "name": "Benedictus"
+    },{
+      "id": 7,
+      "name": "Preces"
+    },{
+      "id": 8,
+      "name": "Padre nuestro"
+    },{
+      "id": 9,
+      "name": "Oración"
+    },{
+      "id": 10,
+      "name": "Bendición"
+    }]
+  }]
+}
